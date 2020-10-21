@@ -53,11 +53,11 @@ function replacenames() {
 export -f replacenames
 
 if [ $doFiles -eq 1 -a $doDires -eq 1 ];then
-	find "$name" -maxdepth $depth -exec bash -c 'replacenames "{}"' \;
+	find "$name" -maxdepth $depth -exec bash -c 'replacenames "$1"' bash {} \;
 elif [ $doFiles -eq 1 ];then
-	find "$name" -maxdepth $depth -type f -exec bash -c 'replacenames "{}"' \;
+	find "$name" -maxdepth $depth -type f -exec bash -c 'replacenames "$1"' bash {} \;
 elif [ $doDires -eq 1 ];then
-	find "$name" -maxdepth $depth -type d -exec bash -c 'replacenames "{}"' \;
+	find "$name" -maxdepth $depth -type d -exec bash -c 'replacenames "$1"' bash {}  \;
 else
 	echo "Nothing to do!"
 fi
